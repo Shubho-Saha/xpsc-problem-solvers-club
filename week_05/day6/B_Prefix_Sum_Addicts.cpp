@@ -17,13 +17,10 @@ void solve()
 
     bool flag = false;
     ll crrnt;
-    
+
     if (vec[0] == 0){
         crrnt = 0;
-    } else if (vec[0] < 0){
-        ll rem = vec[0];
-        crrnt = rem / ((n - k) + 1);
-    } else {
+    }  else {
         ll rem = vec[0];
         crrnt = ceil((1.0 * rem) / (n - k + 1));
     }
