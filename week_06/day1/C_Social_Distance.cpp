@@ -5,31 +5,6 @@
 #define fastIO() ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0)
 using namespace std;
 
-void solve2(){
-    int n,k;
-    cin>>n>>k;
-    string s;
-    cin>>s;
-    int cnt=0;
-    int l=0,r=0;
-    while(r<n){
-        if(s[r]=='1'){
-            r+=(k+1);
-            l=r;
-        }
-        else if(r-l==k){
-            cnt++;
-            r++;
-            l=r;
-        }
-        else if(s[r]=='0'){
-            r++;
-            if(r==n) cnt++;
-        }
-    }
-    cout<<cnt<<endl;
-}
-
 void solve()
 {
     int n, k;
@@ -102,8 +77,7 @@ int main()
     cin>>t;
     while(t--)
     {
-        // solve();
-        solve2();
+        solve();
     }
 
     return 0;
