@@ -14,12 +14,8 @@ void solve()
     int b = 1 << lastbit;
     int a = b ^ x;
 
-    int minDiff = min((b-a-1), (x-b));
-    int lastbits = __lg(minDiff);
-    if (minDiff == 0) {
-        cout<<1<<nl;
-        return;
-    }
+    int lastbits = __lg(a);
+
     int zerocnt = 0;
     for(int i=0; i<=lastbits; i++) {
         if (((a>>i)&1) || ((b>>i)&1)) continue;
