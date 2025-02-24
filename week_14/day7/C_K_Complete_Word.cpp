@@ -11,13 +11,43 @@ void solve()
     cin>>n>>k;
     string s;
     cin>>s;
-
-    map<char, int> mp;
-    int mxcnt = 0;
-    for(auto c : s) {
-        mp[c]++;
-        mxcnt = max(mxcnt, mp[c]);
+    string str = " ";
+    str += s;
+    
+    int half = k/2;
+    int opcnt = 0;
+    for(int i=1; i<=half; i++) {
+        map<char, int> mp; int cnt = 1;
+        for(int j=i; j<=n; j += k) {
+            auto one = str[j];
+            auto two = str[cnt*k-i+1];
+            mp[one]++; mp[two]++;
+            cnt++;
+        }
+        int total = 0, mx = 0;
+        for(auto [key, val] : mp) {
+            total += val;
+            mx = max(mx, val);
+        }
+        opcnt += (total - mx);
     }
+
+    if (k&1) {
+        int idx = (k+1)/2;
+        map<char, int> mp;
+        for(int i=idx; i<=n; i += k) {
+            auto c = str[i];
+            mp[c]++;
+        }
+        int total = 0, mx = 0;
+        for(auto [key, val] : mp) {
+            total += val;
+            mx = max(mx, val);
+        }
+        opcnt += (total - mx);
+    }
+
+    cout<<opcnt<<nl;
 
     
 }
