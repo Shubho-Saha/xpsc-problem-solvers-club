@@ -26,21 +26,21 @@ bool isValid(int i, int j)
 }
 
 
-ll dfs(int si, int sj, ll sum)
-{
-    sum += grid[si][sj];
+ll dfs(int si, int sj)
+{  
     visited[si][sj] = true;
 
+    ll childSum = 0;
     for(int i=0; i<4; i++) {
         int ci = si + dx[i];
         int cj = sj + dy[i];
 
         if (isValid(ci, cj) && !visited[ci][cj] && grid[ci][cj] != 0) {
-            sum += dfs(ci, cj, 0);
+            childSum += dfs(ci, cj);
         }
     }
 
-    return sum;
+    return childSum + grid[si][sj];
 }
 
 void solve()
@@ -58,7 +58,7 @@ void solve()
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
             if (visited[i][j] == false && grid[i][j] != 0) {
-                ll sum = dfs(i, j, 0);
+                ll sum = dfs(i, j);
                 mxSum = max(sum, mxSum);
             }
         }
